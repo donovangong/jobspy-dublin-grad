@@ -75,7 +75,7 @@ def filter_jobs(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.copy()
 
-    for col in ["title", "company", "location", "description", "site", "job_url", "date_posted", "search_term"]:
+    for col in ["title", "company", "location", "date_posted", "description", "job_url"]:
         if col not in df.columns:
             df[col] = ""
 
@@ -83,10 +83,9 @@ def filter_jobs(df: pd.DataFrame) -> pd.DataFrame:
     df["company"] = df["company"].fillna("")
     df["location"] = df["location"].fillna("")
     df["description"] = df["description"].fillna("")
-    df["site"] = df["site"].fillna("")
     df["job_url"] = df["job_url"].fillna("")
     df["date_posted"] = df["date_posted"].fillna("")
-    df["search_term"] = df["search_term"].fillna("")
+
 
     df["dedupe_key"] = (
         df["title"].str.lower().str.strip()
@@ -100,7 +99,7 @@ def filter_jobs(df: pd.DataFrame) -> pd.DataFrame:
     df["description"] = df["description"].apply(lambda x: clean_description(x, max_len=500))
 
     # 只保留展示需要的列
-    keep_cols = ["title", "company", "location", "date_posted", "description"]
+    keep_cols = ["title", "company", "location", "date_posted", "description", "job_url"]
     for c in keep_cols:
         if c not in df.columns:
             df[c] = ""
