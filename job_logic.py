@@ -53,7 +53,7 @@ def scrape_all_jobs() -> pd.DataFrame:
                     search_term=term,
                     location="Cork, Ireland",
                     results_wanted=100,
-                    hours_old=120,
+                    hours_old=24,
                     country_indeed="Ireland",
                 )
                 if jobs is not None and not jobs.empty:
@@ -113,7 +113,7 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
     if df.empty:
         rows_html = """
         <tr>
-          <td colspan="5">No jobs found in the last 120 hours.</td>
+          <td colspan="5">No jobs found in the last 24 hours.</td>
         </tr>
         """
     else:
