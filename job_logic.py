@@ -114,7 +114,7 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
     if df.empty:
         rows_html = """
         <tr>
-          <td colspan="7">No jobs found in the last 24 hours.</td>
+          <td colspan="5">No jobs found in the last 120 hours.</td>
         </tr>
         """
     else:
@@ -137,11 +137,9 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
             <tr>
               <td>{title_html}</td>
               <td>{company}</td>
-              <td>{site}</td>
               <td>{location}</td>
               <td>{posted}</td>
-              <td>{search_term}</td>
-              <td>{open_html}</td>
+              <td>{description}</td>
             </tr>
             """)
 
