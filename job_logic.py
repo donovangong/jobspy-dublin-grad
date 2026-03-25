@@ -32,7 +32,15 @@ def normalize_text(value: Any) -> str:
     if value is None:
         return ""
     return str(value).strip()
-
+    
+def clean_description(text: Any, max_len: int = 500) -> str:
+    text = normalize_text(text)
+    if not text:
+        return ""
+    text = " ".join(text.split())
+    if len(text) > max_len:
+        return text[:max_len].rstrip() + "..."
+    return text
 
 def scrape_all_jobs() -> pd.DataFrame:
     frames = []
