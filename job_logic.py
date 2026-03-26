@@ -200,6 +200,11 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
 <body>
   <h1>Dublin Graduate Jobs</h1>
   <div class="meta">Last updated: {generated_at} UTC</div>
+  <div class="meta">
+    <a href="jobs.csv" download>Download filtered CSV</a>
+    &nbsp;|&nbsp;
+    <a href="jobs_raw.csv" download>Download raw CSV</a>
+  </div>
   <table>
     <thead>
       <tr>
