@@ -114,7 +114,7 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
     if df.empty:
         rows_html = """
         <tr>
-          <td colspan="5">No jobs found in the last 24 hours.</td>
+          <td colspan="4">No jobs found in the last 24 hours.</td>
         </tr>
         """
     else:
@@ -124,7 +124,6 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
             company = normalize_text(row.get("company"))
             location = normalize_text(row.get("location"))
             posted = normalize_text(row.get("date_posted"))
-            description = normalize_text(row.get("description"))
             url = normalize_text(row.get("job_url"))
 
             safe_url = url if url else "#"
@@ -139,7 +138,6 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
               <td>{company}</td>
               <td>{location}</td>
               <td>{posted}</td>
-              <td>{description}</td>
             </tr>
             """)
 
@@ -183,11 +181,10 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
       position: sticky;
       top: 0;
     }}
-    th:nth-child(1), td:nth-child(1) {{ width: 20%; }}
-    th:nth-child(2), td:nth-child(2) {{ width: 18%; }}
-    th:nth-child(3), td:nth-child(3) {{ width: 16%; }}
-    th:nth-child(4), td:nth-child(4) {{ width: 14%; }}
-    th:nth-child(5), td:nth-child(5) {{ width: 32%; }}
+    th:nth-child(1), td:nth-child(1) {{ width: 34%; }}
+    th:nth-child(2), td:nth-child(2) {{ width: 24%; }}
+    th:nth-child(3), td:nth-child(3) {{ width: 22%; }}
+    th:nth-child(4), td:nth-child(4) {{ width: 20%; }}
 
     a {{
       text-decoration: none;
@@ -202,8 +199,6 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
   <div class="meta">Last updated: {generated_at} UTC</div>
   <div class="meta">
     <a href="jobs.csv" download>Download filtered CSV</a>
-    &nbsp;|&nbsp;
-    <a href="jobs_raw.csv" download>Download raw CSV</a>
   </div>
   <table>
     <thead>
@@ -212,7 +207,6 @@ def build_html(df: pd.DataFrame, generated_at: str) -> str:
         <th>Company</th>
         <th>Location</th>
         <th>Posted</th>
-        <th>Description</th>
       </tr>
     </thead>
     <tbody>
