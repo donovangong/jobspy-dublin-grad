@@ -55,6 +55,7 @@ def scrape_all_jobs() -> pd.DataFrame:
                     results_wanted=100,
                     hours_old=24,
                     country_indeed="Ireland",
+                    linkedin_fetch_description=(site == "linkedin"),
                 )
                 if jobs is not None and not jobs.empty:
                     jobs = jobs.copy()
