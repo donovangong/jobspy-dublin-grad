@@ -1,1 +1,1 @@
-https://donovangong.github.io/jobspy-cork-grad/
+https://donovangong.github.io/jobspy-dublin-grad/
