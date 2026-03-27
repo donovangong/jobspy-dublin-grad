@@ -83,7 +83,10 @@ def filter_jobs(df: pd.DataFrame) -> pd.DataFrame:
     df["description"] = df["description"].fillna("")
     df["job_url"] = df["job_url"].fillna("")
     df["site"] = df["site"].fillna("")
-
+    
+    exclude_pattern = r"senior|staff|principal|lead|manager|director|head|vp"
+    exclude_mask = df["title"].str.contains(exclude_pattern, case=False, na=False)
+    df = df[~exclude_mask]
 
     df["dedupe_key"] = (
         df["title"].str.lower().str.strip()
